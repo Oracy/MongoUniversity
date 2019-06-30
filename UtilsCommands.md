@@ -217,6 +217,25 @@ db.movies.find(
 
 ---
 
+# Update Documents:
+
+--- https://docs.mongodb.com/manual/reference/operator/update/
+
+- Update Documents using filters.
+
+```javascript
+db.movieDetails.updateOne(
+	{
+		title: "The Martian"
+	},
+	{
+		$set: {
+			poster: "http://www.google.com.br"
+		}
+	}
+)
+```
+
 ```javascript
 db.movieDetails.updateOne(
 	{
@@ -234,9 +253,21 @@ db.movieDetails.updateOne(
 )
 ```
 
-# Update Documents:
+```javascript
+db.movieDetails.updateOne(
+	{
+		title: "The Martian"
+	},
+	{
+		$inc: {
+			"tomato.reviews": 3,
+			"tomato.userReviews": 25
+		}
+	}
+)
+```
 
-- Update Documents using filters.
+- Creating an array on push
 
 ```javascript
 db.movieDetails.updateOne(
@@ -244,9 +275,70 @@ db.movieDetails.updateOne(
 		title: "The Martian"
 	},
 	{
-		$set: {
-			poster: "http://www.google.com.br"
+		$push: {
+			reviews: {
+				rating: 4.5,
+				date: ISODate("2016-01-12T09:00:00Z"),
+				reviewer: "Spencer H.",
+				text: "reviewText1"
+			}
 		}
 	}
 )
+```
+
+- More than onde update in the same array.
+
+```javascript
+db.movieDetails.updateOne(
+	{
+		title: "The Martian"
+	},
+	{
+		$push: {
+			reviews: {
+				$each: [
+					{
+						rating: 0.5,
+						date: ISODate("2016-01-12T07:00:00Z"),
+						reviewer: "Yabo A",
+						text: "reviewText2"
+					},
+					{},
+					{
+						rating: 5,
+						date: ISODate("2016-01-12T09:00:00Z"),
+						reviewer: "Kristina Z",
+						text: "reviewText3"
+					},
+					{},
+					{
+						rating: 2.5,
+						date: ISODate("2015-10-26T04:00:00Z"),
+						reviewer: "Matthew Samuel",
+						text: "reviewText4"
+					},
+					{},
+					{
+						rating: 4.5,
+						date: ISODate("2015-12-13T03:00:00Z"),
+						reviewer: "Eugene B",
+						text: "reviewText5"
+					}
+				]
+			}
+		}
+	}
+)
+```
+
+- Update Many Documents
+```javascript
+db.movieDetails.updateMany({
+  rated: null
+}, {
+  $unset: {
+    rated: ""
+  }
+})
 ```
