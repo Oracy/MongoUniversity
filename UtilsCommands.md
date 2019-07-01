@@ -333,12 +333,46 @@ db.movieDetails.updateOne(
 ```
 
 - Update Many Documents
+
 ```javascript
-db.movieDetails.updateMany({
-  rated: null
-}, {
-  $unset: {
-    rated: ""
-  }
+db.movieDetails.updateMany(
+	{
+		rated: null
+	},
+	{
+		$unset: {
+			rated: ""
+		}
+	}
+)
+```
+
+- Update documents using variables
+
+```javascript
+let filter = {
+	title: "House, M.D., Season Four: New Beginnings"
+}
+let doc = db.movieDetails.findOne(filter)
+doc.poster
+doc.poster = "http://www.imdb.com/title/tt1329164/mediaviewer/rm2619416576"
+doc.genres
+doc.genres.push("TV Series")
+db.movieDetails.replaceOne(filter, doc)
+```
+
+# Delete Documents:
+
+- Delete documents by filter
+
+```javascript
+db.movieDetails.deleteOne({
+	_id: ObjectId("5d17af63d970b2ffd974d69f")
+})
+```
+
+```javascript
+db.movieDetails.deleteMany({
+	metacritic: 38
 })
 ```
