@@ -376,3 +376,11 @@ db.movieDetails.deleteMany({
 	metacritic: 38
 })
 ```
+
+# Query with operators
+
+```javascript
+db.movieDetails.find({
+	writers: { $in: ["Ethan Coen", "Joel Coen"] }
+})
+```
