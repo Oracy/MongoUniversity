@@ -376,3 +376,26 @@ db.movieDetails.deleteMany({
 	metacritic: 38
 })
 ```
+
+# Create User:
+```javascript
+db.createUser(
+  {
+    user: "rec02",
+    pwd: "Nosql2018",
+    roles: [
+       { role: "readWrite", db: "atlas" }
+    ]
+  }
+)
+
+db.createUser(
+  {
+    user: "rec01",
+    pwd: "Nosql2018",
+    roles: [
+       { role: "readWrite", db: "atlas" }
+    ]
+  }
+)
+```
