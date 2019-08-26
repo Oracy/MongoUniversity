@@ -399,3 +399,11 @@ db.createUser(
   }
 )
 ```
+
+# Query with operators
+
+```javascript
+db.movieDetails.find({
+	writers: { $in: ["Ethan Coen", "Joel Coen"] }
+})
+```
