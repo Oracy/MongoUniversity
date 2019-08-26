@@ -382,9 +382,9 @@ db.movieDetails.deleteMany({
 db.createUser(
   {
     user: "rec02",
-    pwd: "Nosql2018",
+    pwd: "pwd",
     roles: [
-       { role: "readWrite", db: "atlas" }
+       { role: "readWrite", db: "db1" }
     ]
   }
 )
@@ -392,9 +392,9 @@ db.createUser(
 db.createUser(
   {
     user: "rec01",
-    pwd: "Nosql2018",
+    pwd: "pwd",
     roles: [
-       { role: "readWrite", db: "atlas" }
+       { role: "readWrite", db: "db2" }
     ]
   }
 )
