@@ -407,3 +407,13 @@ db.movieDetails.find({
 	writers: { $in: ["Ethan Coen", "Joel Coen"] }
 })
 ```
+
+# Mongo Dump
+```bash
+mongodump --host "localhost" --username User --password password --port 27017 --authenticationDatabase database
+```
+
+# Mongo Restore
+```bash
+mongorestore dump --username username --password password --authenticationDatabase database
+```
